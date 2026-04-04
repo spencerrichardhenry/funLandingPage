@@ -1,0 +1,365 @@
+---
+const phases = [
+  { name: 'Planning & Reqs', oldEffort: 20, newEffort: 15, risk: false },
+  { name: 'Architecture', oldEffort: 20, newEffort: 15, risk: false },
+  { name: 'Design', oldEffort: 30, newEffort: 20, risk: false },
+  { name: 'UX Testing', oldEffort: 10, newEffort: 10, risk: false },
+  { name: 'Customer Buyin', oldEffort: 10, newEffort: 10, risk: false },
+  { name: 'Buildout', oldEffort: 50, newEffort: 5, risk: false },
+  { name: 'QA', oldEffort: 25, newEffort: 15, risk: true },
+  { name: 'Deployment', oldEffort: 10, newEffort: 10, risk: false },
+  { name: 'Documentation', oldEffort: 15, newEffort: 10, risk: true },
+  { name: 'Maintenance', oldEffort: 5, newEffort: 5, risk: false, ongoing: true },
+];
+const maxEffort = 50;
+---
+
+<section id="llms-sdlc" class="section sdlc-section">
+  <div class="container">
+    <h2 class="section-title sdlc-title">WHERE DO LLMs SLOT INTO THE SDLC?</h2>
+
+    <!-- Toggle -->
+    <div class="toggle-wrapper">
+      <button class="toggle-btn toggle-active" id="btn-old">Old School</button>
+      <button class="toggle-btn" id="btn-new">LLM Enabled</button>
+    </div>
+
+    <!-- Chart -->
+    <div class="chart-area" id="chart-area">
+      {phases.map((phase) => (
+        <div class="chart-row" data-old-effort={phase.oldEffort} data-new-effort={phase.newEffort} data-risk={phase.risk} data-ongoing={phase.ongoing || false}>
+          <div class="chart-label">
+            <span class="chart-name">{phase.name}</span>
+          </div>
+          <div class="chart-bar-track">
+            <div class="chart-bar-ghost" style={`width: ${(phase.oldEffort / maxEffort) * 100}%`}></div>
+            <div class="chart-bar" style={`width: ${(phase.oldEffort / maxEffort) * 100}%`}>
+              <span class="bar-value">{phase.oldEffort}</span>
+            </div>
+            {phase.ongoing && (
+              <div class="ongoing-indicator">
+                <span class="ongoing-arrow">→</span>
+                <span class="ongoing-label">ONGOING</span>
+              </div>
+            )}
+            {phase.risk && <span class="risk-badge" style="display:none">⚠ NEW RISK</span>}
+          </div>
+        </div>
+      ))}
+    </div>
+
+
+
+  </div>
+</section>
+
+<style>
+  /* ===== LIGHT MODE (Old School - default) ===== */
+  .sdlc-section {
+    background-color: #FFFFFF;
+    background-image:
+      linear-gradient(rgba(0, 102, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 102, 255, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+    transition: background-color 0.4s, color 0.4s;
+  }
+
+  .sdlc-title {
+    color: #222;
+    transition: color 0.4s, text-shadow 0.4s;
+  }
+
+  /* ===== DARK MODE (LLM Enabled) ===== */
+  .sdlc-section.dark {
+    background-color: #1A1A2E;
+    background-image:
+      linear-gradient(rgba(0, 204, 68, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 204, 68, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .sdlc-section.dark .sdlc-title {
+    color: var(--green);
+    text-shadow: 0 0 10px rgba(0, 204, 68, 0.3);
+  }
+
+  /* ===== TOGGLE ===== */
+  .toggle-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 36px;
+    border: var(--border-thick);
+    box-shadow: var(--shadow-boxy);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+  }
+
+  .toggle-btn {
+    font-family: var(--font-heading);
+    font-size: clamp(9px, 1.5vw, 12px);
+    padding: 12px 28px;
+    cursor: pointer;
+    border: none;
+    background: var(--bg-gray);
+    color: #666;
+    transition: background 0.2s, color 0.2s;
+    position: relative;
+  }
+
+  .toggle-btn:first-child {
+    border-right: 2px solid #222;
+  }
+
+  .toggle-active {
+    background: var(--blue);
+    color: white;
+  }
+
+  .sdlc-section.dark .toggle-active {
+    background: var(--green);
+    color: #111;
+  }
+
+  /* ===== CHART ===== */
+  .chart-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .chart-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .chart-label {
+    width: 160px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .chart-name {
+    font-family: var(--font-heading);
+    font-size: clamp(7px, 1.2vw, 10px);
+    color: #444;
+    transition: color 0.4s;
+  }
+
+  .sdlc-section.dark .chart-name {
+    color: #ccc;
+  }
+
+  .chart-bar-track {
+    flex: 1;
+    height: 36px;
+    background: #F0EDE8;
+    border: 2px solid #ddd;
+    position: relative;
+    display: flex;
+    align-items: center;
+    transition: background 0.4s, border-color 0.4s;
+  }
+
+  .sdlc-section.dark .chart-bar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Ghost bar — shows where the old effort was */
+  .chart-bar-ghost {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: transparent;
+    border-right: none;
+    opacity: 0;
+    transition: opacity 0.4s ease 0.2s;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .sdlc-section.dark .chart-bar-ghost.visible {
+    opacity: 1;
+    background: rgba(0, 204, 68, 0.12);
+    border-right: 3px dashed rgba(0, 204, 68, 0.6);
+    box-shadow: inset 0 0 0 1px rgba(0, 204, 68, 0.1);
+  }
+
+  .chart-bar {
+    height: 100%;
+    background: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    transition: width 0.5s ease, background 0.4s;
+    min-width: 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .sdlc-section.dark .chart-bar {
+    background: var(--green);
+  }
+
+  .sdlc-section.dark .chart-bar.risk-bar {
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--green),
+      var(--green) 8px,
+      rgba(255, 215, 0, 0.6) 8px,
+      rgba(255, 215, 0, 0.6) 12px
+    );
+  }
+
+  .bar-value {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Ongoing indicator */
+  .ongoing-indicator {
+    position: absolute;
+    right: -110px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+  }
+
+  .ongoing-arrow {
+    font-family: var(--font-body);
+    font-size: 24px;
+    color: #888;
+    animation: pulse-arrow 1.5s ease-in-out infinite;
+    transition: color 0.4s;
+  }
+
+  .sdlc-section.dark .ongoing-arrow {
+    color: var(--yellow);
+  }
+
+  .ongoing-label {
+    font-family: var(--font-ui);
+    font-size: 9px;
+    color: #888;
+    letter-spacing: 1px;
+    transition: color 0.4s;
+  }
+
+  .sdlc-section.dark .ongoing-label {
+    color: var(--yellow);
+  }
+
+  @keyframes pulse-arrow {
+    0%, 100% { opacity: 0.5; transform: translateX(0); }
+    50% { opacity: 1; transform: translateX(4px); }
+  }
+
+  /* Risk badge */
+  .risk-badge {
+    position: absolute;
+    right: -120px;
+    font-family: var(--font-ui);
+    font-size: 9px;
+    color: var(--yellow);
+    background: rgba(255, 215, 0, 0.15);
+    border: 1px solid var(--yellow);
+    padding: 2px 8px;
+    white-space: nowrap;
+    animation: risk-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes risk-pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; box-shadow: 0 0 8px rgba(255, 215, 0, 0.3); }
+  }
+
+  @media (max-width: 640px) {
+    .chart-label {
+      width: 100px;
+    }
+    .chart-name {
+      font-size: 7px;
+    }
+    .ongoing-indicator {
+      display: none;
+    }
+    .risk-badge {
+      display: none !important;
+    }
+    .toggle-btn {
+      padding: 10px 16px;
+    }
+  }
+</style>
+
+<script define:vars={{ phases, maxEffort }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const section = document.getElementById('llms-sdlc');
+    const btnOld = document.getElementById('btn-old');
+    const btnNew = document.getElementById('btn-new');
+    const rows = document.querySelectorAll('.chart-row');
+
+    let mode = 'old';
+
+    function setMode(newMode) {
+      mode = newMode;
+
+      if (mode === 'old') {
+        section.classList.remove('dark');
+        btnOld.classList.add('toggle-active');
+        btnNew.classList.remove('toggle-active');
+      } else {
+        section.classList.add('dark');
+        btnNew.classList.add('toggle-active');
+        btnOld.classList.remove('toggle-active');
+      }
+
+      rows.forEach((row) => {
+        const oldEffort = parseInt(row.dataset.oldEffort);
+        const newEffort = parseInt(row.dataset.newEffort);
+        const hasRisk = row.dataset.risk === 'true';
+        const bar = row.querySelector('.chart-bar');
+        const barValue = row.querySelector('.bar-value');
+        const riskBadge = row.querySelector('.risk-badge');
+        const ghost = row.querySelector('.chart-bar-ghost');
+
+        const effort = mode === 'old' ? oldEffort : newEffort;
+        const pct = (effort / maxEffort) * 100;
+
+        bar.style.width = pct + '%';
+        barValue.textContent = effort;
+
+        // Show ghost bar in LLM mode when effort decreased
+        if (mode === 'new' && newEffort < oldEffort) {
+          ghost.classList.add('visible');
+        } else {
+          ghost.classList.remove('visible');
+        }
+
+        if (hasRisk && mode === 'new') {
+          bar.classList.add('risk-bar');
+          if (riskBadge) riskBadge.style.display = 'block';
+        } else {
+          bar.classList.remove('risk-bar');
+          if (riskBadge) riskBadge.style.display = 'none';
+        }
+      });
+    }
+
+    btnOld.addEventListener('click', () => setMode('old'));
+    btnNew.addEventListener('click', () => setMode('new'));
+  });
+</script>

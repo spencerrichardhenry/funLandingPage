@@ -1,0 +1,225 @@
+---
+const credentials = [
+  {
+    icon: '🧠',
+    title: 'Neuroscience Degree',
+    detail: 'Studied the brain, ended up programming them (sort of)',
+  },
+  {
+    icon: '🏢',
+    title: 'Qualtrics, Whistic, Quantizr, Guardian',
+    detail: 'Full-stack across startups and enterprise',
+  },
+  {
+    icon: '🤖',
+    title: 'AI-First Engineering',
+    detail: 'Shipped production AI workflows before it was cool',
+  },
+  {
+    icon: '🛠️',
+    title: 'Principal Engineer → Senior SWE',
+    detail: 'Led eng teams, architected products, broke things in prod',
+  },
+  {
+    icon: '📜',
+    title: 'Self-Taught Developer',
+    detail: 'Bootcamp → professional in 6 months, no CS degree',
+  },
+  {
+    icon: '🎮',
+    title: 'Builder of Cool Things',
+    detail: 'Movie script search engines, micro-SaaS, marketplaces, and more',
+  },
+];
+---
+
+<section id="why-me" class="section why-me-section">
+  <div class="container">
+    <div class="dos-prompt">
+      <span class="dos-path">C:\LECTURE\SPEAKER&gt;</span>
+      <span class="dos-cmd"> whoami</span>
+      <span class="dos-cursor">_</span>
+    </div>
+
+    <div class="dos-output">
+      <p>User: SPENCER_HENRY</p>
+      <p>Role: Senior Software Engineer @ Guardian</p>
+      <p>Clearance: GUEST_LECTURER</p>
+      <br />
+      <p>Loading credentials...</p>
+    </div>
+
+    <h2 class="section-title">WHY YOU SHOULD LISTEN TO ME</h2>
+
+    <div class="credentials-grid">
+      {credentials.map((cred) => (
+        <div class="credential-card boxy-box">
+          <div class="cred-icon">{cred.icon}</div>
+          <div class="cred-content">
+            <h3 class="cred-title">{cred.title}</h3>
+            <p class="cred-detail">{cred.detail}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="tldr-box">
+      <div class="tldr-header win95-raised">
+        <span class="tldr-dots">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+        </span>
+        <span class="tldr-label">tl;dr.exe</span>
+      </div>
+      <div class="tldr-body">
+        <p>I'm not a researcher. I'm not a thought leader. I'm a guy who writes code every day and has been using LLMs as part of my daily workflow since GPT-3. I'm here to tell you what it's actually like in the trenches.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-me-section {
+    background-color: #FFFFFF;
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 59px,
+        rgba(0, 102, 255, 0.06) 59px,
+        rgba(0, 102, 255, 0.06) 60px
+      );
+  }
+
+  .dos-prompt {
+    font-family: var(--font-body);
+    font-size: 28px;
+    margin-bottom: 8px;
+    color: #222;
+  }
+
+  .dos-path {
+    color: var(--blue);
+  }
+
+  .dos-cmd {
+    color: #222;
+  }
+
+  .dos-cursor {
+    animation: blink 1s step-end infinite;
+    color: var(--green);
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .dos-output {
+    font-family: var(--font-body);
+    font-size: 20px;
+    color: #666;
+    padding: 12px 0 24px;
+    border-bottom: 2px dashed #ddd;
+    margin-bottom: 32px;
+  }
+
+  .dos-output p {
+    margin-bottom: 2px;
+  }
+
+  .credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .credential-card {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: transform 0.1s;
+  }
+
+  .credential-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .cred-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+  }
+
+  .cred-title {
+    font-family: var(--font-heading);
+    font-size: 10px;
+    color: #222;
+    margin-bottom: 6px;
+    line-height: 1.6;
+  }
+
+  .cred-detail {
+    font-family: var(--font-body);
+    font-size: 20px;
+    color: #555;
+    line-height: 1.4;
+  }
+
+  /* TL;DR window */
+  .tldr-box {
+    border: var(--border-thick);
+    box-shadow: var(--shadow-boxy);
+    overflow: hidden;
+  }
+
+  .tldr-header {
+    background: var(--bg-gray);
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid #999;
+  }
+
+  .tldr-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .dot-red { background: var(--red); }
+  .dot-yellow { background: var(--yellow); }
+  .dot-green { background: var(--green); }
+
+  .tldr-label {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    color: #444;
+  }
+
+  .tldr-body {
+    padding: 20px;
+    background: var(--bg-white);
+  }
+
+  .tldr-body p {
+    font-family: var(--font-body);
+    font-size: 22px;
+    color: #444;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    .credentials-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

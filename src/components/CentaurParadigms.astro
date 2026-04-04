@@ -1,0 +1,352 @@
+---
+---
+
+<section id="centaur" class="section centaur-section">
+  <div class="container">
+    <h2 class="section-title">CENTAUR vs. REVERSE CENTAUR</h2>
+
+    <div class="paradigm-grid">
+      <!-- Centaur -->
+      <div class="paradigm-window">
+        <div class="window-titlebar win95-raised">
+          <span class="window-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </span>
+          <span class="window-title">centaur.exe</span>
+          <div class="window-controls">
+            <span class="win-btn">_</span>
+            <span class="win-btn">□</span>
+            <span class="win-btn">×</span>
+          </div>
+        </div>
+        <div class="window-body centaur-body">
+          <div class="paradigm-icon">🧑‍💻 → 🤖</div>
+          <h3 class="paradigm-name">THE CENTAUR</h3>
+          <p class="paradigm-subtitle">Human-led, AI-assisted</p>
+          <div class="paradigm-divider"></div>
+          <div class="paradigm-desc">
+            <p>The human drives strategy, makes decisions, and uses AI as a powerful tool. Like a chess centaur — the human brain + computer calculation = unstoppable.</p>
+          </div>
+          <div class="paradigm-traits">
+            <div class="trait">
+              <span class="trait-label">WHO DECIDES:</span>
+              <span class="trait-value">Human</span>
+            </div>
+            <div class="trait">
+              <span class="trait-label">AI ROLE:</span>
+              <span class="trait-value">Tool / Assistant</span>
+            </div>
+            <div class="trait">
+              <span class="trait-label">EXAMPLE:</span>
+              <span class="trait-value">Engineer using Copilot to write code faster</span>
+            </div>
+            <div class="trait">
+              <span class="trait-label">RISK:</span>
+              <span class="trait-value trait-low">Low — you stay sharp</span>
+            </div>
+          </div>
+          <div class="paradigm-verdict verdict-good">
+            <span class="verdict-icon">✓</span>
+            <span>THIS IS WHERE YOU WANT TO BE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reverse Centaur -->
+      <div class="paradigm-window">
+        <div class="window-titlebar win95-raised">
+          <span class="window-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </span>
+          <span class="window-title">reverse_centaur.exe</span>
+          <div class="window-controls">
+            <span class="win-btn">_</span>
+            <span class="win-btn">□</span>
+            <span class="win-btn">×</span>
+          </div>
+        </div>
+        <div class="window-body reverse-body">
+          <div class="paradigm-icon">🤖 → 🧑‍💻</div>
+          <h3 class="paradigm-name paradigm-name-danger">THE REVERSE CENTAUR</h3>
+          <p class="paradigm-subtitle">AI-led, human-assisted</p>
+          <div class="paradigm-divider"></div>
+          <div class="paradigm-desc">
+            <p>The AI drives the work and the human just approves, clicks buttons, or fills in gaps. You become the API that the AI calls. AKA: "vibe coding" taken too far.</p>
+          </div>
+          <div class="paradigm-traits">
+            <div class="trait">
+              <span class="trait-label">WHO DECIDES:</span>
+              <span class="trait-value">AI</span>
+            </div>
+            <div class="trait">
+              <span class="trait-label">HUMAN ROLE:</span>
+              <span class="trait-value">Rubber stamp / button presser</span>
+            </div>
+            <div class="trait">
+              <span class="trait-label">EXAMPLE:</span>
+              <span class="trait-value">Accepting every AI suggestion without reading it</span>
+            </div>
+            <div class="trait">
+              <span class="trait-label">RISK:</span>
+              <span class="trait-value trait-high">High — skill atrophy, blind spots</span>
+            </div>
+          </div>
+          <div class="paradigm-verdict verdict-bad">
+            <span class="verdict-icon">✗</span>
+            <span>THE TRAP TO AVOID</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sticky notes -->
+    <div class="sticky-notes">
+      <div class="sticky sticky-yellow">
+        <p>Kasparov lost to Deep Blue in 1997. Then he invented Centaur Chess — and centaur teams beat both humans AND computers alone.</p>
+      </div>
+      <div class="sticky sticky-pink">
+        <p>The question isn't "will AI take my job?" — it's "am I the centaur or the reverse centaur?"</p>
+      </div>
+      <div class="sticky sticky-green">
+        <p>Vibe coding is fun for prototypes. Centaur coding is how you ship production software.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .centaur-section {
+    background-color: var(--bg-teal);
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .centaur-section .section-title {
+    color: white;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+  }
+
+  .paradigm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  /* Windows */
+  .paradigm-window {
+    border: var(--border-thick);
+    box-shadow: var(--shadow-boxy);
+    overflow: hidden;
+  }
+
+  .window-titlebar {
+    background: var(--bg-gray);
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid #999;
+  }
+
+  .window-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .dot-red { background: var(--red); }
+  .dot-yellow { background: var(--yellow); }
+  .dot-green { background: var(--green); }
+
+  .window-title {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    color: #222;
+    flex: 1;
+  }
+
+  .window-controls {
+    display: flex;
+    gap: 4px;
+  }
+
+  .win-btn {
+    font-family: var(--font-body);
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-gray);
+    border: 1px solid #888;
+    cursor: default;
+  }
+
+  .window-body {
+    padding: 24px;
+    background: white;
+  }
+
+  .centaur-body {
+    border-left: 6px solid var(--green);
+  }
+
+  .reverse-body {
+    border-left: 6px solid var(--red);
+  }
+
+  .paradigm-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+
+  .paradigm-name {
+    font-family: var(--font-heading);
+    font-size: clamp(11px, 1.8vw, 16px);
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+
+  .paradigm-name-danger {
+    color: var(--red);
+  }
+
+  .paradigm-subtitle {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 12px;
+  }
+
+  .paradigm-divider {
+    height: 2px;
+    background: #eee;
+    margin-bottom: 16px;
+  }
+
+  .paradigm-desc p {
+    font-family: var(--font-body);
+    font-size: 20px;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .paradigm-traits {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .trait {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+  }
+
+  .trait-label {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    color: #888;
+    min-width: 100px;
+    flex-shrink: 0;
+  }
+
+  .trait-value {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: #444;
+  }
+
+  .trait-low { color: var(--green); }
+  .trait-high { color: var(--red); }
+
+  .paradigm-verdict {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    font-family: var(--font-heading);
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .verdict-good {
+    background: #E8F5E9;
+    border: 2px solid var(--green);
+    color: var(--green);
+  }
+
+  .verdict-bad {
+    background: #FFEBEE;
+    border: 2px solid var(--red);
+    color: var(--red);
+  }
+
+  .verdict-icon {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  /* Sticky notes */
+  .sticky-notes {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .sticky {
+    width: 220px;
+    padding: 16px;
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.5;
+    color: #333;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+    transform: rotate(-2deg);
+  }
+
+  .sticky:nth-child(2) {
+    transform: rotate(1.5deg);
+  }
+
+  .sticky:nth-child(3) {
+    transform: rotate(-1deg);
+  }
+
+  .sticky-yellow {
+    background: #FFF9C4;
+  }
+
+  .sticky-pink {
+    background: #F8BBD0;
+  }
+
+  .sticky-green {
+    background: #C8E6C9;
+  }
+
+  @media (max-width: 768px) {
+    .paradigm-grid {
+      grid-template-columns: 1fr;
+    }
+    .sticky-notes {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
