@@ -1,5 +1,6 @@
 ---
-const base = import.meta.env.BASE_URL;
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 const champions = [
   { name: 'Shaco', mastery: '718,670', level: 10, role: 'Support / Jungle', icon: `${base}gaming/shaco-icon.png` },
   { name: 'Pyke', mastery: '101,962', level: 12, role: 'Support', icon: `${base}gaming/pyke-icon.png` },

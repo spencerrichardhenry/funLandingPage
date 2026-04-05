@@ -1,5 +1,6 @@
 ---
-const base = import.meta.env.BASE_URL;
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 const memes = [
   { src: `${base}memes/7r1cjk.jpg`, type: 'image' },
   { src: `${base}memes/cheese-comes-with-a-price-v0-6793wtxjqmga1.webp`, type: 'image' },
