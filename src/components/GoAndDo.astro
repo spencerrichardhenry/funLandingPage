@@ -1,0 +1,191 @@
+---
+const examples = [
+  'Categorizing my S-Corp transactions for taxes',
+  'Reformatting an XML doc to JSON',
+  'Gathering a list of allergy-safe food options for an event',
+  'Drafting a meal plan for the week based on what\'s in my fridge',
+  'Summarizing a 40-page PDF into bullet points',
+  'Writing a script to rename 500 files',
+];
+---
+
+<section id="go-and-do" class="section go-section">
+  <div class="container">
+    <h2 class="section-title go-title">GO AND DO</h2>
+
+    <div class="cta-window">
+      <div class="cta-titlebar win95-raised">
+        <span class="cta-dots">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+        </span>
+        <span class="cta-label">homework.exe</span>
+      </div>
+      <div class="cta-body">
+        <p class="cta-text">Next time you bump into a problem, stop yourself and ask:</p>
+        <div class="cta-question">
+          <p>"How can I get an agent to help me solve this?"</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="examples-box">
+      <div class="examples-header">
+        <span class="examples-label">FOR EXAMPLE...</span>
+      </div>
+      <div class="examples-list">
+        {examples.map((ex, i) => (
+          <div class="example-item">
+            <span class="example-num">[{String(i + 1).padStart(2, '0')}]</span>
+            <span class="example-text">{ex}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .go-section {
+    background-color: var(--bg-light);
+    background-image:
+      linear-gradient(45deg, #e8e0d4 25%, transparent 25%),
+      linear-gradient(-45deg, #e8e0d4 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #e8e0d4 75%),
+      linear-gradient(-45deg, transparent 75%, #e8e0d4 75%);
+    background-size: 40px 40px;
+    background-position: 0 0, 0 20px, 20px -20px, -20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .go-title {
+    color: #222;
+    font-size: clamp(24px, 4vw, 48px);
+    margin-bottom: 40px;
+  }
+
+  /* CTA Window */
+  .cta-window {
+    border: var(--border-thick);
+    box-shadow: var(--shadow-boxy);
+    overflow: hidden;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-titlebar {
+    background: var(--bg-gray);
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid #999;
+  }
+
+  .cta-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .dot-red { background: var(--red); }
+  .dot-yellow { background: var(--yellow); }
+  .dot-green { background: var(--green); }
+
+  .cta-label {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    color: #444;
+  }
+
+  .cta-body {
+    padding: 32px;
+    background: white;
+    text-align: center;
+  }
+
+  .cta-text {
+    font-family: var(--font-body);
+    font-size: 24px;
+    color: #444;
+    margin-bottom: 24px;
+    line-height: 1.4;
+  }
+
+  .cta-question {
+    background: var(--yellow);
+    border: var(--border-thick);
+    box-shadow: var(--shadow-boxy-sm);
+    padding: 20px 28px;
+    display: inline-block;
+  }
+
+  .cta-question p {
+    font-family: var(--font-heading);
+    font-size: clamp(11px, 1.8vw, 16px);
+    color: #222;
+    line-height: 1.6;
+  }
+
+  /* Examples */
+  .examples-box {
+    border: var(--border-thick);
+    box-shadow: var(--shadow-boxy);
+    background: white;
+    overflow: hidden;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .examples-header {
+    background: #222;
+    padding: 10px 20px;
+  }
+
+  .examples-label {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    color: var(--yellow);
+    letter-spacing: 2px;
+  }
+
+  .examples-list {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .example-item {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+
+  .example-num {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--blue);
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  .example-text {
+    font-family: var(--font-body);
+    font-size: 22px;
+    color: #444;
+    line-height: 1.4;
+  }
+</style>

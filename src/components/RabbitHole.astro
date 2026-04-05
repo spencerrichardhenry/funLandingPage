@@ -1,27 +1,18 @@
 ---
-const links = [
+const boxes = [
   {
-    category: 'WATCH',
+    category: 'HARNESSES — TERMINAL',
     items: [
-      { name: 'Andrej Karpathy — "Intro to LLMs"', url: 'https://www.youtube.com/watch?v=zjkBMFhNj_g', desc: 'The best 1-hour intro to how LLMs actually work' },
-      { name: 'Fireship — "God-Tier Developer Roadmap"', url: 'https://www.youtube.com/watch?v=pEfrdAtAmqk', desc: 'What skills matter in 2026 and beyond' },
-      { name: '3Blue1Brown — "But what is a GPT?"', url: 'https://www.youtube.com/watch?v=wjZofJX0v4M', desc: 'Beautiful visual explanation of transformers' },
+      { name: 'Claude Code', url: 'https://docs.anthropic.com/en/docs/claude-code' },
+      { name: 'OpenCode', url: 'https://opencode.ai/' },
     ],
   },
   {
-    category: 'READ',
+    category: 'HARNESSES — APPS',
     items: [
-      { name: 'Simon Willison\'s Blog', url: 'https://simonwillison.net/', desc: 'The best AI-for-developers blog on the internet' },
-      { name: 'Anthropic Research', url: 'https://www.anthropic.com/research', desc: 'Papers and posts from the Claude team' },
-      { name: '"The Pragmatic Programmer" (Hunt & Thomas)', url: '#', desc: 'Timeless software craft — even more relevant with AI' },
-    ],
-  },
-  {
-    category: 'TRY',
-    items: [
-      { name: 'Claude Code (CLI)', url: 'https://docs.anthropic.com/en/docs/claude-code', desc: 'AI pair programmer in your terminal — what I use daily' },
-      { name: 'Cursor / Windsurf', url: 'https://cursor.sh/', desc: 'AI-native code editors' },
-      { name: 'Build something with an LLM this weekend', url: '#', desc: 'Seriously. The best way to learn is to ship.' },
+      { name: 'Claude', url: 'https://claude.ai/' },
+      { name: 'Codex', url: 'https://chatgpt.com/codex' },
+      { name: 'Figma Make', url: 'https://www.figma.com/make/' },
     ],
   },
 ];
@@ -36,30 +27,37 @@ const links = [
     </div>
 
     <div class="rabbit-intro boxy-box-sm">
-      <p>You're not going to learn this stuff from a lecture. You learn it by going deep. Here's where to start.</p>
+      <p>Time to get your hands dirty. We're going to build a little tool — together, right now.</p>
     </div>
 
+    <!-- Harness boxes + chaos box -->
     <div class="resource-columns">
-      {links.map((group) => (
+      {boxes.map((box) => (
         <div class="resource-group">
           <div class="group-header">
-            <span class="group-category">{group.category}</span>
+            <span class="group-category">{box.category}</span>
           </div>
           <div class="group-items">
-            {group.items.map((item, i) => (
+            {box.items.map((item) => (
               <div class="resource-item">
-                <div class="item-num">[{String(i + 1).padStart(2, '0')}]</div>
-                <div class="item-content">
-                  <a href={item.url} target="_blank" rel="noopener noreferrer" class="item-name">{item.name}</a>
-                  <p class="item-desc">{item.desc}</p>
-                </div>
+                <span class="item-bullet">▸</span>
+                <a href={item.url} target="_blank" rel="noopener noreferrer" class="item-name">{item.name}</a>
               </div>
             ))}
           </div>
         </div>
       ))}
+      <div class="resource-group chaos-group">
+        <div class="group-header chaos-header">
+          <span class="group-category">FEELING CHAOTIC?</span>
+        </div>
+        <div class="group-items">
+          <p class="chaos-text">Feel free to go off the rails. Build a different app, take this further, have it do it in X framework or language.</p>
+        </div>
+      </div>
     </div>
 
+    <!-- Instructions terminal -->
     <div class="terminal-panel">
       <div class="terminal-header">
         <span class="terminal-dots">
@@ -67,31 +65,26 @@ const links = [
           <span class="dot dot-yellow"></span>
           <span class="dot dot-green"></span>
         </span>
-        <span class="terminal-label">parting_words.sh</span>
+        <span class="terminal-label">assignment.sh</span>
       </div>
       <div class="terminal-body">
-        <p class="term-line"><span class="term-prompt">$</span> cat ~/thoughts/final_message.txt</p>
-        <p class="term-line term-output">&nbsp;</p>
-        <p class="term-line term-output">The developers who thrive in the next decade</p>
-        <p class="term-line term-output">won't be the ones who memorize syntax.</p>
-        <p class="term-line term-output">&nbsp;</p>
-        <p class="term-line term-output">They'll be the ones who learn to think clearly,</p>
-        <p class="term-line term-output">communicate precisely, and use every tool</p>
-        <p class="term-line term-output">available — including AI — to build things</p>
-        <p class="term-line term-output">that matter.</p>
-        <p class="term-line term-output">&nbsp;</p>
-        <p class="term-line term-output">Be the centaur.</p>
-        <p class="term-line term-output">&nbsp;</p>
-        <p class="term-line term-output">--- EOF ---</p>
+        <p class="term-line"><span class="term-prompt">$</span> cat ~/lecture/assignment.md</p>
+        <p class="term-line term-heading">## BUILD: A Personal To-Do Tracker</p>
+        <p class="term-line term-step"><span class="step-num">[1]</span> Open the <a href="/funLandingPage/promptGenerator/" class="term-link-a">Prompt Generator</a></p>
+        <p class="term-line term-step"><span class="step-num">[2]</span> Pick a theme: retro 90s, sci-fi, fantasy, deathmetal, etc.</p>
+        <p class="term-line term-step"><span class="step-num">[3]</span> Pick a color scheme from <span class="term-link">coolors.co/generate</span></p>
+        <p class="term-line term-step"><span class="step-num">[4]</span> Describe your data model</p>
+        <p class="term-line term-step"><span class="step-num">[5]</span> Pick a framework / language</p>
+        <p class="term-line term-step"><span class="step-num">[6]</span> Hit generate, copy the prompt, let 'er rip</p>
+        <p class="term-line term-output">--- GOOD LUCK ---</p>
         <p class="term-line"><span class="term-prompt">$</span> <span class="term-cursor">_</span></p>
       </div>
     </div>
 
     <div class="contact-box boxy-box">
-      <p class="contact-text">Questions? Want to chat about AI + dev? Find me after class or reach out online.</p>
+      <p class="contact-text">Questions? Want to chat about LLMs + dev? Shoot me an email.</p>
       <div class="contact-badges">
-        <span class="contact-badge">GitHub: @spencerhenry</span>
-        <span class="contact-badge">LinkedIn: Spencer Henry</span>
+        <span class="contact-badge">spencerrichardhenry@gmail.com</span>
       </div>
     </div>
   </div>
@@ -170,50 +163,60 @@ const links = [
 
   .group-category {
     font-family: var(--font-heading);
-    font-size: 12px;
+    font-size: 10px;
     color: var(--yellow);
     letter-spacing: 2px;
   }
 
   .group-items {
-    padding: 12px;
+    padding: 12px 16px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 10px;
   }
 
   .resource-item {
     display: flex;
-    gap: 10px;
-    align-items: flex-start;
+    gap: 8px;
+    align-items: center;
   }
 
-  .item-num {
+  .item-bullet {
     font-family: var(--font-body);
     font-size: 18px;
-    color: var(--yellow);
+    color: var(--green);
     flex-shrink: 0;
-    opacity: 0.6;
   }
 
   .item-name {
     font-family: var(--font-body);
-    font-size: 20px;
+    font-size: 22px;
     color: var(--yellow);
     text-decoration: underline;
-    display: block;
-    margin-bottom: 2px;
   }
 
   .item-name:hover {
     color: white;
   }
 
-  .item-desc {
+  /* Chaos box */
+  .chaos-group {
+    border-color: rgba(255, 0, 64, 0.3);
+  }
+
+  .chaos-header {
+    border-bottom-color: rgba(255, 0, 64, 0.3);
+  }
+
+  .chaos-group .group-category {
+    color: var(--red);
+  }
+
+  .chaos-text {
     font-family: var(--font-body);
-    font-size: 16px;
-    color: #888;
-    line-height: 1.4;
+    font-size: 18px;
+    color: #ccc;
+    line-height: 1.5;
   }
 
   /* Terminal */
@@ -275,6 +278,38 @@ const links = [
   .term-output {
     color: #88CC88;
     padding-left: 16px;
+  }
+
+  .term-heading {
+    color: var(--yellow);
+    padding-left: 16px;
+    margin-bottom: 4px;
+  }
+
+  .term-step {
+    color: var(--green);
+    padding-left: 16px;
+  }
+
+  .step-num {
+    color: var(--yellow);
+    margin-right: 6px;
+  }
+
+  .term-link {
+    color: var(--yellow);
+    text-decoration: underline;
+    opacity: 0.8;
+  }
+
+  .term-link-a {
+    color: var(--yellow);
+    text-decoration: underline;
+    font-weight: bold;
+  }
+
+  .term-link-a:hover {
+    color: white;
   }
 
   .term-cursor {

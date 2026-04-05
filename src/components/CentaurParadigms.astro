@@ -22,29 +22,55 @@
           </div>
         </div>
         <div class="window-body centaur-body">
-          <div class="paradigm-icon">🧑‍💻 → 🤖</div>
+          <div class="paradigm-icon">
+            <!-- Human head on robot body -->
+            <svg viewBox="0 0 80 120" width="80" height="120" class="centaur-svg">
+              <!-- Human head -->
+              <circle cx="40" cy="18" r="14" fill="#F5CBA7" stroke="#222" stroke-width="2.5"/>
+              <circle cx="34" cy="15" r="2" fill="#222"/>
+              <circle cx="46" cy="15" r="2" fill="#222"/>
+              <path d="M35 23 Q40 27 45 23" fill="none" stroke="#222" stroke-width="1.5"/>
+              <!-- Hair -->
+              <path d="M26 14 Q28 4 40 4 Q52 4 54 14" fill="#6B4226" stroke="#222" stroke-width="1.5"/>
+              <!-- Neck -->
+              <rect x="36" y="32" width="8" height="6" fill="#F5CBA7" stroke="#222" stroke-width="1.5"/>
+              <!-- Robot torso -->
+              <rect x="22" y="38" width="36" height="30" rx="3" fill="#C0C0C0" stroke="#222" stroke-width="2.5"/>
+              <rect x="32" y="44" width="16" height="8" rx="1" fill="#0066FF" stroke="#222" stroke-width="1"/>
+              <circle cx="40" cy="60" r="3" fill="#00CC44"/>
+              <!-- Robot arms -->
+              <rect x="10" y="40" width="10" height="24" rx="3" fill="#A0A0A0" stroke="#222" stroke-width="2"/>
+              <rect x="60" y="40" width="10" height="24" rx="3" fill="#A0A0A0" stroke="#222" stroke-width="2"/>
+              <!-- Robot legs -->
+              <rect x="26" y="70" width="11" height="28" rx="2" fill="#A0A0A0" stroke="#222" stroke-width="2"/>
+              <rect x="43" y="70" width="11" height="28" rx="2" fill="#A0A0A0" stroke="#222" stroke-width="2"/>
+              <!-- Feet -->
+              <rect x="23" y="96" width="17" height="6" rx="2" fill="#808080" stroke="#222" stroke-width="2"/>
+              <rect x="40" y="96" width="17" height="6" rx="2" fill="#808080" stroke="#222" stroke-width="2"/>
+            </svg>
+          </div>
           <h3 class="paradigm-name">THE CENTAUR</h3>
-          <p class="paradigm-subtitle">Human-led, AI-assisted</p>
+          <p class="paradigm-subtitle">Human-led, LLM-assisted</p>
           <div class="paradigm-divider"></div>
           <div class="paradigm-desc">
-            <p>The human drives strategy, makes decisions, and uses AI as a powerful tool. Like a chess centaur — the human brain + computer calculation = unstoppable.</p>
+            <p>The human drives strategy, makes decisions, gets the credit. LLMs help with tedium and precision</p>
           </div>
           <div class="paradigm-traits">
             <div class="trait">
-              <span class="trait-label">WHO DECIDES:</span>
-              <span class="trait-value">Human</span>
+              <span class="trait-bullet">▸</span>
+              <span class="trait-value">Ship safer code</span>
             </div>
             <div class="trait">
-              <span class="trait-label">AI ROLE:</span>
-              <span class="trait-value">Tool / Assistant</span>
+              <span class="trait-bullet">▸</span>
+              <span class="trait-value">Spend less time on tedium</span>
             </div>
             <div class="trait">
-              <span class="trait-label">EXAMPLE:</span>
-              <span class="trait-value">Engineer using Copilot to write code faster</span>
+              <span class="trait-bullet">▸</span>
+              <span class="trait-value">Get to build more ambitious versions of things</span>
             </div>
-            <div class="trait">
-              <span class="trait-label">RISK:</span>
-              <span class="trait-value trait-low">Low — you stay sharp</span>
+                        <div class="trait">
+              <span class="trait-bullet">▸</span>
+              <span class="trait-value">Upskill super quickly</span>
             </div>
           </div>
           <div class="paradigm-verdict verdict-good">
@@ -55,7 +81,7 @@
       </div>
 
       <!-- Reverse Centaur -->
-      <div class="paradigm-window">
+      <div class="paradigm-window reverse-window">
         <div class="window-titlebar win95-raised">
           <span class="window-dots">
             <span class="dot dot-red"></span>
@@ -70,29 +96,47 @@
           </div>
         </div>
         <div class="window-body reverse-body">
-          <div class="paradigm-icon">🤖 → 🧑‍💻</div>
+          <div class="paradigm-icon">
+            <!-- Robot head plopped right on legs, no body -->
+            <svg viewBox="0 0 80 80" width="80" height="80" class="centaur-svg" style="margin-bottom:40px">
+              <!-- Human legs (jeans) -->
+              <rect x="26" y="32" width="12" height="30" rx="1" fill="#4A6FA5" stroke="#222" stroke-width="2"/>
+              <rect x="42" y="32" width="12" height="30" rx="1" fill="#4A6FA5" stroke="#222" stroke-width="2"/>
+              <!-- Shoes -->
+              <rect x="24" y="60" width="16" height="7" rx="3" fill="#5C4033" stroke="#222" stroke-width="2"/>
+              <rect x="40" y="60" width="16" height="7" rx="3" fill="#5C4033" stroke="#222" stroke-width="2"/>
+              <!-- Robot head sitting directly on the legs -->
+              <rect x="24" y="4" width="32" height="28" rx="4" fill="#C0C0C0" stroke="#222" stroke-width="2.5"/>
+              <rect x="30" y="12" width="8" height="5" rx="1" fill="#FF0040" stroke="#222" stroke-width="1"/>
+              <rect x="42" y="12" width="8" height="5" rx="1" fill="#FF0040" stroke="#222" stroke-width="1"/>
+              <rect x="33" y="22" width="14" height="3" rx="1" fill="#808080" stroke="#222" stroke-width="1"/>
+              <!-- Antenna -->
+              <line x1="40" y1="4" x2="40" y2="-2" stroke="#222" stroke-width="2"/>
+              <circle cx="40" cy="-4" r="3" fill="#FF0040" stroke="#222" stroke-width="1.5"/>
+            </svg>
+          </div>
           <h3 class="paradigm-name paradigm-name-danger">THE REVERSE CENTAUR</h3>
-          <p class="paradigm-subtitle">AI-led, human-assisted</p>
+          <p class="paradigm-subtitle">LLM-led, human-assisted</p>
           <div class="paradigm-divider"></div>
           <div class="paradigm-desc">
-            <p>The AI drives the work and the human just approves, clicks buttons, or fills in gaps. You become the API that the AI calls. AKA: "vibe coding" taken too far.</p>
+            <p>LLMs drive the work, humans act as the gatekeeper or quality control.</p>
           </div>
           <div class="paradigm-traits">
             <div class="trait">
-              <span class="trait-label">WHO DECIDES:</span>
-              <span class="trait-value">AI</span>
+              <span class="trait-bullet trait-bullet-bad">▸</span>
+              <span class="trait-value">Liability cushion</span>
             </div>
             <div class="trait">
-              <span class="trait-label">HUMAN ROLE:</span>
-              <span class="trait-value">Rubber stamp / button presser</span>
+              <span class="trait-bullet trait-bullet-bad">▸</span>
+              <span class="trait-value">Review X plans per day</span>
             </div>
             <div class="trait">
-              <span class="trait-label">EXAMPLE:</span>
-              <span class="trait-value">Accepting every AI suggestion without reading it</span>
+              <span class="trait-bullet trait-bullet-bad">▸</span>
+              <span class="trait-value">Test X features per day</span>
             </div>
-            <div class="trait">
-              <span class="trait-label">RISK:</span>
-              <span class="trait-value trait-high">High — skill atrophy, blind spots</span>
+                        <div class="trait">
+              <span class="trait-bullet trait-bullet-bad">▸</span>
+              <span class="trait-value">"LLM does that, why do I need to know?"</span>
             </div>
           </div>
           <div class="paradigm-verdict verdict-bad">
@@ -100,21 +144,25 @@
             <span>THE TRAP TO AVOID</span>
           </div>
         </div>
+        <!-- Win95 error popup -->
+        <div class="error-popup">
+          <div class="error-titlebar">
+            <span class="error-title-text">⚠ reality_check.exe</span>
+            <span class="error-close">×</span>
+          </div>
+          <div class="error-body">
+            <div class="error-icon">⚠</div>
+            <p class="error-msg">This is the vision that VC hype is pitching to execs.</p>
+          </div>
+          <div class="error-buttons">
+            <button class="error-btn win95-raised">OK</button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Sticky notes -->
-    <div class="sticky-notes">
-      <div class="sticky sticky-yellow">
-        <p>Kasparov lost to Deep Blue in 1997. Then he invented Centaur Chess — and centaur teams beat both humans AND computers alone.</p>
-      </div>
-      <div class="sticky sticky-pink">
-        <p>The question isn't "will AI take my job?" — it's "am I the centaur or the reverse centaur?"</p>
-      </div>
-      <div class="sticky sticky-green">
-        <p>Vibe coding is fun for prototypes. Centaur coding is how you ship production software.</p>
-      </div>
-    </div>
+
+
   </div>
 </section>
 
@@ -208,8 +256,14 @@
   }
 
   .paradigm-icon {
-    font-size: 36px;
     margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .centaur-svg {
+    display: block;
+    overflow: visible;
   }
 
   .paradigm-name {
@@ -257,12 +311,15 @@
     align-items: baseline;
   }
 
-  .trait-label {
-    font-family: var(--font-ui);
-    font-size: 10px;
-    color: #888;
-    min-width: 100px;
+  .trait-bullet {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--green);
     flex-shrink: 0;
+  }
+
+  .trait-bullet-bad {
+    color: var(--red);
   }
 
   .trait-value {
@@ -270,9 +327,6 @@
     font-size: 18px;
     color: #444;
   }
-
-  .trait-low { color: var(--green); }
-  .trait-high { color: var(--red); }
 
   .paradigm-verdict {
     display: flex;
@@ -301,52 +355,149 @@
     font-weight: bold;
   }
 
-  /* Sticky notes */
-  .sticky-notes {
+  /* Win95 error popup */
+  .reverse-window {
+    position: relative;
+  }
+
+  .error-popup {
+    position: absolute;
+    top: 290px;
+    left: 220px;
+    width: 260px;
+    background: var(--bg-gray);
+    border: 2px solid #222;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.4);
+    z-index: 10;
+    border-top: 2px solid var(--win95-highlight);
+    border-left: 2px solid var(--win95-highlight);
+    border-bottom: 2px solid var(--win95-dark-shadow);
+    border-right: 2px solid var(--win95-dark-shadow);
+  }
+
+  .error-titlebar {
+    background: #000080;
+    padding: 3px 6px;
     display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #000060;
   }
 
-  .sticky {
-    width: 220px;
-    padding: 16px;
+  .error-title-text {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    color: white;
+    font-weight: 700;
+  }
+
+  .error-close {
     font-family: var(--font-body);
-    font-size: 18px;
-    line-height: 1.5;
-    color: #333;
-    box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
-    transform: rotate(-2deg);
+    font-size: 16px;
+    color: #222;
+    background: var(--bg-gray);
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--win95-highlight);
+    border-left: 1px solid var(--win95-highlight);
+    border-bottom: 1px solid var(--win95-dark-shadow);
+    border-right: 1px solid var(--win95-dark-shadow);
+    line-height: 1;
   }
 
-  .sticky:nth-child(2) {
-    transform: rotate(1.5deg);
+  .error-body {
+    padding: 16px 12px 8px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
   }
 
-  .sticky:nth-child(3) {
-    transform: rotate(-1deg);
+  .error-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
   }
 
-  .sticky-yellow {
-    background: #FFF9C4;
+  .error-msg {
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: #222;
+    line-height: 1.4;
   }
 
-  .sticky-pink {
-    background: #F8BBD0;
+  .error-buttons {
+    display: flex;
+    justify-content: center;
+    padding: 4px 12px 12px;
   }
 
-  .sticky-green {
-    background: #C8E6C9;
+  .error-btn {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    padding: 3px 24px;
+    background: var(--bg-gray);
+    border: none;
+    cursor: default;
   }
 
   @media (max-width: 768px) {
     .paradigm-grid {
       grid-template-columns: 1fr;
     }
-    .sticky-notes {
-      flex-direction: column;
-      align-items: center;
+    .error-popup {
+      right: 0;
     }
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.querySelector('.error-popup');
+    const titlebar = popup.querySelector('.error-titlebar');
+    const container = popup.parentElement;
+
+    let dragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    titlebar.style.cursor = 'grab';
+
+    titlebar.addEventListener('mousedown', (e) => {
+      dragging = true;
+      titlebar.style.cursor = 'grabbing';
+      const rect = popup.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!dragging) return;
+      const containerRect = container.getBoundingClientRect();
+      let x = e.clientX - containerRect.left - offsetX;
+      let y = e.clientY - containerRect.top - offsetY;
+
+      // Clamp within the reverse-centaur window
+      const maxX = containerRect.width - popup.offsetWidth;
+      const maxY = containerRect.height - popup.offsetHeight;
+      x = Math.max(0, Math.min(x, maxX));
+      y = Math.max(0, Math.min(y, maxY));
+
+      popup.style.position = 'absolute';
+      popup.style.left = x + 'px';
+      popup.style.top = y + 'px';
+      popup.style.right = 'auto';
+      popup.style.bottom = 'auto';
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (dragging) {
+        dragging = false;
+        titlebar.style.cursor = 'grab';
+      }
+    });
+  });
+</script>

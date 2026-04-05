@@ -1,35 +1,54 @@
 ---
 const phases = [
-  { name: 'Planning & Reqs', oldEffort: 20, newEffort: 15, risk: false },
-  { name: 'Architecture', oldEffort: 20, newEffort: 15, risk: false },
-  { name: 'Design', oldEffort: 30, newEffort: 20, risk: false },
-  { name: 'UX Testing', oldEffort: 10, newEffort: 10, risk: false },
-  { name: 'Customer Buyin', oldEffort: 10, newEffort: 10, risk: false },
-  { name: 'Buildout', oldEffort: 50, newEffort: 5, risk: false },
-  { name: 'QA', oldEffort: 25, newEffort: 15, risk: true },
-  { name: 'Deployment', oldEffort: 10, newEffort: 10, risk: false },
-  { name: 'Documentation', oldEffort: 15, newEffort: 10, risk: true },
-  { name: 'Maintenance', oldEffort: 5, newEffort: 5, risk: false, ongoing: true },
+  { name: 'Planning & Reqs', oldEffort: 20, newEffort: 15, risk: false, dev: false },
+  { name: 'Architecture', oldEffort: 20, newEffort: 15, risk: false, dev: true },
+  { name: 'Design', oldEffort: 30, newEffort: 20, risk: false, dev: false },
+  { name: 'UX Testing', oldEffort: 10, newEffort: 10, risk: false, dev: false },
+  { name: 'Customer Buyin', oldEffort: 10, newEffort: 10, risk: false, dev: false },
+  { name: 'Buildout', oldEffort: 50, newEffort: 5, risk: false, dev: true },
+  { name: 'QA', oldEffort: 25, newEffort: 15, risk: true, dev: true },
+  { name: 'Deployment', oldEffort: 10, newEffort: 10, risk: false, dev: false },
+  { name: 'Documentation', oldEffort: 15, newEffort: 10, risk: true, dev: true },
+  { name: 'Maintenance', oldEffort: 10, newEffort: 0, risk: false, dev: true, ongoing: true, unknown: true },
 ];
 const maxEffort = 50;
+
+const oldDev = phases.filter(p => p.dev).reduce((s, p) => s + p.oldEffort, 0);
+const oldSupport = phases.filter(p => !p.dev).reduce((s, p) => s + p.oldEffort, 0);
+const newDev = phases.filter(p => p.dev).reduce((s, p) => s + p.newEffort, 0);
+const newSupport = phases.filter(p => !p.dev).reduce((s, p) => s + p.newEffort, 0);
 ---
 
 <section id="llms-sdlc" class="section sdlc-section">
   <div class="container">
     <h2 class="section-title sdlc-title">WHERE DO LLMs SLOT INTO THE SDLC?</h2>
 
-    <!-- Toggle -->
-    <div class="toggle-wrapper">
-      <button class="toggle-btn toggle-active" id="btn-old">Old School</button>
-      <button class="toggle-btn" id="btn-new">LLM Enabled</button>
+    <!-- Toggle + totals -->
+    <div class="toggle-row">
+      <div class="toggle-wrapper">
+        <button class="toggle-btn toggle-active" id="btn-old">Old School</button>
+        <button class="toggle-btn" id="btn-new">LLM Enabled</button>
+      </div>
+      <div class="effort-totals">
+        <div class="effort-total effort-total-support">
+          <span class="effort-label">NON-DEV</span>
+          <span class="effort-num" id="effort-support">{oldSupport}</span>
+        </div>
+        <div class="effort-total effort-total-dev">
+          <span class="effort-label">DEV</span>
+          <span class="effort-num" id="effort-dev">{oldDev}</span>
+        </div>
+      </div>
     </div>
 
     <!-- Chart -->
     <div class="chart-area" id="chart-area">
       {phases.map((phase) => (
-        <div class="chart-row" data-old-effort={phase.oldEffort} data-new-effort={phase.newEffort} data-risk={phase.risk} data-ongoing={phase.ongoing || false}>
+        <div class={`chart-row ${phase.dev ? 'chart-row-dev' : 'chart-row-support'}`} data-old-effort={phase.oldEffort} data-new-effort={phase.newEffort} data-risk={phase.risk} data-ongoing={phase.ongoing || false} data-unknown={phase.unknown || false}>
           <div class="chart-label">
-            <span class="chart-name">{phase.name}</span>
+            {phase.dev && <span class="dev-pip"></span>}
+            <span class={`chart-name ${phase.dev ? '' : 'chart-name-support'}`}>{phase.name}</span>
+            {!phase.dev && <span class="support-tag">SERVES DEV</span>}
           </div>
           <div class="chart-bar-track">
             <div class="chart-bar-ghost" style={`width: ${(phase.oldEffort / maxEffort) * 100}%`}></div>
@@ -83,17 +102,77 @@ const maxEffort = 50;
     text-shadow: 0 0 10px rgba(0, 204, 68, 0.3);
   }
 
-  /* ===== TOGGLE ===== */
+  /* ===== TOGGLE ROW ===== */
+  .toggle-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 36px;
+  }
+
+  .effort-totals {
+    position: absolute;
+    right: 0;
+    display: flex;
+    gap: 16px;
+  }
+
+  .effort-total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    min-width: 70px;
+  }
+
+  .effort-label {
+    font-family: var(--font-ui);
+    font-size: 8px;
+    color: #999;
+    letter-spacing: 0.5px;
+    transition: color 0.4s;
+  }
+
+  .sdlc-section.dark .effort-label {
+    color: #666;
+  }
+
+  .effort-num {
+    font-family: var(--font-heading);
+    font-size: clamp(16px, 2.5vw, 24px);
+    color: #444;
+    transition: color 0.4s;
+  }
+
+  .sdlc-section.dark .effort-num {
+    color: #ccc;
+  }
+
+  .effort-total-dev .effort-num {
+    color: var(--blue);
+  }
+
+  .sdlc-section.dark .effort-total-dev .effort-num {
+    color: var(--green);
+    text-shadow: 0 0 6px rgba(0, 204, 68, 0.3);
+  }
+
+  .effort-total-support .effort-num {
+    color: #999;
+  }
+
+  .sdlc-section.dark .effort-total-support .effort-num {
+    color: #777;
+  }
+
   .toggle-wrapper {
     display: flex;
     justify-content: center;
     gap: 0;
-    margin-bottom: 36px;
     border: var(--border-thick);
     box-shadow: var(--shadow-boxy);
     width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
     overflow: hidden;
   }
 
@@ -141,6 +220,26 @@ const maxEffort = 50;
     width: 160px;
     flex-shrink: 0;
     text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+
+  /* Dev pip — small colored square next to dev-core phases */
+  .dev-pip {
+    width: 8px;
+    height: 8px;
+    background: var(--blue);
+    border: 1px solid #222;
+    flex-shrink: 0;
+    transition: background 0.4s;
+  }
+
+  .sdlc-section.dark .dev-pip {
+    background: var(--green);
+    border-color: var(--green);
+    box-shadow: 0 0 4px rgba(0, 204, 68, 0.4);
   }
 
   .chart-name {
@@ -150,8 +249,42 @@ const maxEffort = 50;
     transition: color 0.4s;
   }
 
+  .chart-name-support {
+    color: #999;
+  }
+
   .sdlc-section.dark .chart-name {
     color: #ccc;
+  }
+
+  .sdlc-section.dark .chart-name-support {
+    color: #777;
+  }
+
+  /* "SERVES DEV" tag on support phases */
+  .support-tag {
+    font-family: var(--font-ui);
+    font-size: 7px;
+    color: #aaa;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    padding: 1px 4px;
+    border: 1px solid #ddd;
+    transition: color 0.4s, border-color 0.4s;
+  }
+
+  .sdlc-section.dark .support-tag {
+    color: #666;
+    border-color: #444;
+  }
+
+  /* Mute the bar slightly for support phases */
+  .chart-row-support .chart-bar {
+    opacity: 0.6;
+  }
+
+  .chart-row-support .chart-bar-track {
+    opacity: 0.85;
   }
 
   .chart-bar-track {
@@ -226,6 +359,21 @@ const maxEffort = 50;
     text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
     position: relative;
     z-index: 2;
+  }
+
+  /* Unknown state — "? ? ?" replaces bar */
+  .chart-row-unknown .chart-bar-track::after {
+    content: '? ? ?';
+    font-family: var(--font-heading);
+    font-size: clamp(10px, 1.5vw, 14px);
+    color: var(--yellow);
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    letter-spacing: 4px;
+    animation: risk-pulse 2s ease-in-out infinite;
   }
 
   /* Ongoing indicator */
@@ -305,12 +453,14 @@ const maxEffort = 50;
   }
 </style>
 
-<script define:vars={{ phases, maxEffort }}>
+<script define:vars={{ phases, maxEffort, oldDev, oldSupport, newDev, newSupport }}>
   document.addEventListener('DOMContentLoaded', () => {
     const section = document.getElementById('llms-sdlc');
     const btnOld = document.getElementById('btn-old');
     const btnNew = document.getElementById('btn-new');
     const rows = document.querySelectorAll('.chart-row');
+    const effortDevEl = document.getElementById('effort-dev');
+    const effortSupportEl = document.getElementById('effort-support');
 
     let mode = 'old';
 
@@ -321,32 +471,48 @@ const maxEffort = 50;
         section.classList.remove('dark');
         btnOld.classList.add('toggle-active');
         btnNew.classList.remove('toggle-active');
+        effortDevEl.textContent = oldDev;
+        effortSupportEl.textContent = oldSupport;
       } else {
         section.classList.add('dark');
         btnNew.classList.add('toggle-active');
         btnOld.classList.remove('toggle-active');
+        effortDevEl.textContent = newDev;
+        effortSupportEl.textContent = newSupport;
       }
 
       rows.forEach((row) => {
         const oldEffort = parseInt(row.dataset.oldEffort);
         const newEffort = parseInt(row.dataset.newEffort);
         const hasRisk = row.dataset.risk === 'true';
+        const isUnknown = row.dataset.unknown === 'true';
         const bar = row.querySelector('.chart-bar');
         const barValue = row.querySelector('.bar-value');
         const riskBadge = row.querySelector('.risk-badge');
         const ghost = row.querySelector('.chart-bar-ghost');
+        const ongoingIndicator = row.querySelector('.ongoing-indicator');
 
-        const effort = mode === 'old' ? oldEffort : newEffort;
-        const pct = (effort / maxEffort) * 100;
-
-        bar.style.width = pct + '%';
-        barValue.textContent = effort;
-
-        // Show ghost bar in LLM mode when effort decreased
-        if (mode === 'new' && newEffort < oldEffort) {
+        if (isUnknown && mode === 'new') {
+          bar.style.width = '0%';
+          bar.style.minWidth = '0';
+          barValue.textContent = '';
+          row.classList.add('chart-row-unknown');
+          if (ongoingIndicator) ongoingIndicator.style.display = 'none';
           ghost.classList.add('visible');
         } else {
-          ghost.classList.remove('visible');
+          const effort = mode === 'old' ? oldEffort : newEffort;
+          const pct = (effort / maxEffort) * 100;
+          bar.style.width = pct + '%';
+          bar.style.minWidth = '32px';
+          barValue.textContent = effort;
+          row.classList.remove('chart-row-unknown');
+          if (ongoingIndicator) ongoingIndicator.style.display = '';
+
+          if (mode === 'new' && newEffort < oldEffort) {
+            ghost.classList.add('visible');
+          } else {
+            ghost.classList.remove('visible');
+          }
         }
 
         if (hasRisk && mode === 'new') {

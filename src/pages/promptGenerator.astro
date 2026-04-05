@@ -1,0 +1,408 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Prompt Generator — Agentic AI in Practice">
+  <div class="page-wrapper">
+    <header class="pg-header">
+      <a href="/funLandingPage/lecture/" class="back-link">← Back to Lecture</a>
+      <h1 class="pg-title">PROMPT GENERATOR</h1>
+      <p class="pg-subtitle">Fill in the fields, hit generate, copy the prompt into your agent.</p>
+    </header>
+
+    <div class="form-area">
+      <!-- Theme -->
+      <div class="form-section">
+        <div class="section-header">
+          <span class="section-num">[01]</span>
+          <label class="section-label">THEME</label>
+        </div>
+        <input type="text" id="theme" class="form-input" placeholder="e.g. retro 90s website, sci-fi, fantasy, deathmetal..." />
+      </div>
+
+      <!-- Colors -->
+      <div class="form-section">
+        <div class="section-header">
+          <span class="section-num">[02]</span>
+          <label class="section-label">COLOR SCHEME <span class="hint">(up to 5 hex colors)</span></label>
+        </div>
+        <div class="color-row">
+          <div class="color-input-group">
+            <input type="color" id="color1" class="color-picker" value="#FF0040" />
+            <input type="text" class="color-hex" data-for="color1" value="#FF0040" maxlength="7" />
+          </div>
+          <div class="color-input-group">
+            <input type="color" id="color2" class="color-picker" value="#0066FF" />
+            <input type="text" class="color-hex" data-for="color2" value="#0066FF" maxlength="7" />
+          </div>
+          <div class="color-input-group">
+            <input type="color" id="color3" class="color-picker" value="#00CC44" />
+            <input type="text" class="color-hex" data-for="color3" value="#00CC44" maxlength="7" />
+          </div>
+          <div class="color-input-group">
+            <input type="color" id="color4" class="color-picker" value="#FFD700" />
+            <input type="text" class="color-hex" data-for="color4" value="#FFD700" maxlength="7" />
+          </div>
+          <div class="color-input-group">
+            <input type="color" id="color5" class="color-picker" value="#FFFFFF" />
+            <input type="text" class="color-hex" data-for="color5" value="#FFFFFF" maxlength="7" />
+          </div>
+        </div>
+        <p class="color-tip">Tip: grab a palette from <a href="https://coolors.co/generate" target="_blank" rel="noopener noreferrer">coolors.co/generate</a></p>
+      </div>
+
+      <!-- Data Model -->
+      <div class="form-section">
+        <div class="section-header">
+          <span class="section-num">[03]</span>
+          <label class="section-label">DATA MODEL <span class="hint">(describe your to-do tracker fields)</span></label>
+        </div>
+        <textarea id="datamodel" class="form-textarea" rows="5" placeholder="e.g. Each task has a title, description, priority (high/med/low), due date, tags, and a completed boolean..."></textarea>
+      </div>
+
+      <!-- Framework -->
+      <div class="form-section">
+        <div class="section-header">
+          <span class="section-num">[04]</span>
+          <label class="section-label">FRAMEWORK / LANGUAGE</label>
+        </div>
+        <input type="text" id="framework" class="form-input" placeholder="e.g. React + TypeScript, Python + Flask, vanilla HTML/CSS/JS..." />
+      </div>
+
+      <!-- Generate -->
+      <div class="generate-area">
+        <button id="generate-btn" class="generate-btn win95-raised">
+          <span class="btn-icon">⚡</span>
+          <span>GENERATE PROMPT</span>
+        </button>
+      </div>
+
+      <!-- Output -->
+      <div class="output-section" id="output-section" style="display:none">
+        <div class="output-header">
+          <span class="output-label">YOUR PROMPT</span>
+          <button id="copy-btn" class="copy-btn win95-raised">COPY</button>
+        </div>
+        <pre class="output-text" id="output-text"></pre>
+        <div class="copied-toast" id="copied-toast">Copied!</div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  .pg-header {
+    margin-bottom: 40px;
+  }
+
+  .back-link {
+    font-family: var(--font-body);
+    font-size: 20px;
+    color: var(--blue);
+    text-decoration: underline;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  .back-link:hover {
+    color: var(--red);
+  }
+
+  .pg-title {
+    font-family: var(--font-heading);
+    font-size: clamp(18px, 3vw, 28px);
+    color: #222;
+    margin-bottom: 8px;
+  }
+
+  .pg-subtitle {
+    font-family: var(--font-body);
+    font-size: 22px;
+    color: #666;
+  }
+
+  /* Form sections */
+  .form-area {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .form-section {
+    border: var(--border-thin);
+    box-shadow: var(--shadow-boxy-sm);
+    background: white;
+    padding: 16px 20px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .section-num {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--blue);
+    opacity: 0.6;
+  }
+
+  .section-label {
+    font-family: var(--font-heading);
+    font-size: 10px;
+    color: #222;
+  }
+
+  .hint {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: #888;
+    font-weight: normal;
+  }
+
+  .form-input {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 20px;
+    padding: 8px 12px;
+    border: 2px solid #ccc;
+    background: #FAFAFA;
+    color: #222;
+    outline: none;
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    border-color: var(--blue);
+  }
+
+  .form-textarea {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 20px;
+    padding: 8px 12px;
+    border: 2px solid #ccc;
+    background: #FAFAFA;
+    color: #222;
+    outline: none;
+    resize: vertical;
+  }
+
+  /* Colors */
+  .color-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+
+  .color-input-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .color-picker {
+    width: 36px;
+    height: 36px;
+    border: 2px solid #222;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+  }
+
+  .color-hex {
+    font-family: var(--font-body);
+    font-size: 18px;
+    width: 80px;
+    padding: 4px 6px;
+    border: 2px solid #ccc;
+    background: #FAFAFA;
+    color: #222;
+    text-transform: uppercase;
+  }
+
+  .color-tip {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: #888;
+  }
+
+  .color-tip a {
+    color: var(--blue);
+    text-decoration: underline;
+  }
+
+  /* Generate button */
+  .generate-area {
+    text-align: center;
+  }
+
+  .generate-btn {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    padding: 14px 36px;
+    background: var(--blue);
+    color: white;
+    border: var(--border-thick);
+    box-shadow: var(--shadow-boxy);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.1s;
+  }
+
+  .generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 8px 8px 0 #222;
+  }
+
+  .generate-btn:active {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 0 #222;
+  }
+
+  .btn-icon {
+    font-size: 16px;
+  }
+
+  /* Output */
+  .output-section {
+    border: var(--border-thick);
+    box-shadow: var(--shadow-boxy);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .output-header {
+    background: #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .output-label {
+    font-family: var(--font-heading);
+    font-size: 10px;
+    color: var(--yellow);
+    letter-spacing: 2px;
+  }
+
+  .copy-btn {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    padding: 4px 14px;
+    background: var(--bg-gray);
+    border: none;
+    cursor: pointer;
+  }
+
+  .copy-btn:active {
+    border-top: 2px solid var(--win95-dark-shadow);
+    border-left: 2px solid var(--win95-dark-shadow);
+    border-bottom: 2px solid var(--win95-highlight);
+    border-right: 2px solid var(--win95-highlight);
+  }
+
+  .output-text {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--green);
+    background: #1A1A2E;
+    padding: 16px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.5;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+  .copied-toast {
+    position: absolute;
+    top: 6px;
+    right: 80px;
+    font-family: var(--font-ui);
+    font-size: 10px;
+    color: var(--green);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .copied-toast.show {
+    opacity: 1;
+  }
+
+  @media (max-width: 640px) {
+    .color-row {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Sync color pickers with hex inputs
+    document.querySelectorAll('.color-picker').forEach((picker) => {
+      const hex = document.querySelector(`.color-hex[data-for="${picker.id}"]`);
+      picker.addEventListener('input', () => { hex.value = picker.value.toUpperCase(); });
+      hex.addEventListener('input', () => {
+        if (/^#[0-9A-Fa-f]{6}$/.test(hex.value)) picker.value = hex.value;
+      });
+    });
+
+    // Generate prompt
+    document.getElementById('generate-btn').addEventListener('click', () => {
+      const theme = document.getElementById('theme').value.trim();
+      const datamodel = document.getElementById('datamodel').value.trim();
+      const framework = document.getElementById('framework').value.trim();
+
+      const colors = [];
+      for (let i = 1; i <= 5; i++) {
+        const val = document.querySelector(`.color-hex[data-for="color${i}"]`).value.trim();
+        if (val && val !== '#FFFFFF') colors.push(val);
+      }
+
+      let prompt = `Build me a personal to-do tracker app.\n\n`;
+
+      if (framework) prompt += `Tech stack: ${framework}\n\n`;
+
+      if (theme) prompt += `Design theme: ${theme}\n\n`;
+
+      if (colors.length > 0) prompt += `Color palette: ${colors.join(', ')}\n\n`;
+
+      if (datamodel) prompt += `Data model:\n${datamodel}\n\n`;
+
+      prompt += `Requirements:\n`;
+      prompt += `- Clean, functional UI that matches the theme and color scheme\n`;
+      prompt += `- CRUD operations for tasks (create, read, update, delete)\n`;
+      prompt += `- Persist data (localStorage is fine)\n`;
+      prompt += `- Responsive design\n`;
+      prompt += `- Make it fun and visually interesting\n`;
+
+      const outputSection = document.getElementById('output-section');
+      const outputText = document.getElementById('output-text');
+      outputText.textContent = prompt;
+      outputSection.style.display = 'block';
+      outputSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    // Copy
+    document.getElementById('copy-btn').addEventListener('click', () => {
+      const text = document.getElementById('output-text').textContent;
+      navigator.clipboard.writeText(text);
+      const toast = document.getElementById('copied-toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1500);
+    });
+  });
+</script>

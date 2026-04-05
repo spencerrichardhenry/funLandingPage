@@ -1,0 +1,259 @@
+---
+const steps = [
+  { num: '01', label: 'READ', desc: 'Script pulls all open bug report tickets' },
+  { num: '02', label: 'SPIN UP', desc: 'Agent spins up per ticket with full repo context' },
+  { num: '03', label: 'FIX', desc: 'Agent attempts to reproduce & fix the bug' },
+  { num: '04', label: 'PR', desc: 'Posts a change request on GitHub' },
+  { num: '05', label: 'COMMENT', desc: 'Leaves a comment on the ticket summarizing root cause + fix' },
+];
+---
+
+<section id="case-study" class="section case-section">
+  <div class="container">
+    <h2 class="section-title case-title">CASE STUDY: JUNIOR</h2>
+
+    <div class="case-intro boxy-box-sm">
+      <p>We built an internal tool called <strong>Junior</strong>. It reads our bug backlog, spins up an agent per ticket, and tries to fix each one — fully autonomously.</p>
+    </div>
+
+    <div class="pipeline">
+      {steps.map((step, i) => (
+        <div class="pipeline-step">
+          <div class="step-badge">
+            <span class="step-badge-num">{step.num}</span>
+            <span class="step-badge-label">{step.label}</span>
+          </div>
+          <div class="step-card boxy-box">
+            <p>{step.desc}</p>
+          </div>
+          {i < steps.length - 1 && <div class="step-arrow">▼</div>}
+        </div>
+      ))}
+    </div>
+
+    <div class="terminal-panel">
+      <div class="terminal-header">
+        <span class="terminal-dots">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+        </span>
+        <span class="terminal-label">junior_run.log</span>
+      </div>
+      <div class="terminal-body">
+        <p class="term-line"><span class="term-prompt">$</span> junior --run-all --dry-run=false</p>
+        <p class="term-line term-output">[INFO] Found 12 open bug tickets</p>
+        <p class="term-line term-output">[INFO] Spawning agent for BUG-1042...</p>
+        <p class="term-line term-output">[INFO] Agent identified root cause: off-by-one in pagination</p>
+        <p class="term-line term-output">[INFO] PR #387 opened → github.com/guardian/app/pull/387</p>
+        <p class="term-line term-output">[INFO] Comment posted to BUG-1042 with summary</p>
+        <p class="term-line term-output">[INFO] Spawning agent for BUG-1038...</p>
+        <p class="term-line term-output">[INFO] ...</p>
+        <p class="term-line"><span class="term-prompt">$</span> <span class="term-cursor">_</span></p>
+      </div>
+    </div>
+
+    <div class="case-callout">
+      <div class="callout-icon">💡</div>
+      <div class="callout-text">
+        <p>The human still reviews every PR and merges. Junior is the <strong>centaur's assistant</strong> — not the other way around.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .case-section {
+    background-color: #FFFFFF;
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 59px,
+        rgba(0, 102, 255, 0.06) 59px,
+        rgba(0, 102, 255, 0.06) 60px
+      );
+  }
+
+  .case-title {
+    color: #222;
+  }
+
+  .case-intro {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    text-align: center;
+  }
+
+  .case-intro p {
+    font-family: var(--font-body);
+    font-size: 22px;
+    color: #444;
+    line-height: 1.5;
+  }
+
+  .case-intro strong {
+    color: var(--blue);
+  }
+
+  /* Pipeline */
+  .pipeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .pipeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .step-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .step-badge-num {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--blue);
+    opacity: 0.6;
+  }
+
+  .step-badge-label {
+    font-family: var(--font-heading);
+    font-size: 10px;
+    color: var(--blue);
+    letter-spacing: 1px;
+  }
+
+  .step-card {
+    width: 100%;
+    text-align: center;
+  }
+
+  .step-card p {
+    font-family: var(--font-body);
+    font-size: 20px;
+    color: #444;
+  }
+
+  .step-arrow {
+    font-size: 20px;
+    color: var(--blue);
+    margin: 8px 0;
+    opacity: 0.4;
+  }
+
+  /* Terminal */
+  .terminal-panel {
+    background: #1A1A2E;
+    border: var(--border-thick);
+    box-shadow: var(--shadow-boxy);
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+
+  .terminal-header {
+    background: #2A2A3E;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid #333;
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .dot-red { background: var(--red); }
+  .dot-yellow { background: var(--yellow); }
+  .dot-green { background: var(--green); }
+
+  .terminal-label {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    color: #888;
+  }
+
+  .terminal-body {
+    padding: 16px;
+  }
+
+  .term-line {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--green);
+    margin-bottom: 2px;
+    text-shadow: 0 0 4px rgba(0, 204, 68, 0.4);
+  }
+
+  .term-prompt {
+    color: var(--yellow);
+    margin-right: 8px;
+  }
+
+  .term-output {
+    color: #88CC88;
+    padding-left: 16px;
+  }
+
+  .term-cursor {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Callout */
+  .case-callout {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: #E8F5E9;
+    border: 3px solid var(--green);
+    box-shadow: var(--shadow-boxy-sm);
+    padding: 16px 20px;
+  }
+
+  .callout-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  .callout-text p {
+    font-family: var(--font-body);
+    font-size: 22px;
+    color: #333;
+    line-height: 1.5;
+  }
+
+  .callout-text strong {
+    color: var(--green);
+  }
+
+  @media (max-width: 640px) {
+    .pipeline {
+      max-width: 100%;
+    }
+  }
+</style>
